@@ -6,6 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Fiz a Imersão React da Alura e criei o **Fino Flix**
 !(Site da Alura)[https://www.alura.com.br/imersao-react]
 
+Foram utilizadas algumas funções de CSS e tambem algo de HTML.
 Logo mais atualizarei com maiores informações.
 
 
