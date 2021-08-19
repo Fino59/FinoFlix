@@ -54,7 +54,7 @@ const Input = styled.input`
   transition: border-color .3s;
 
   &:focus {
-    borderm-bottom-color: var(--primary);
+    border-bottom-color: var(--primary);
   }
 
   &:focus:not([type="color"]) + span {

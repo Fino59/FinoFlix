@@ -5,45 +5,44 @@ import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
 import Footer from '../../components/Footer';
 
-
 function Home() {
   return (
-    <div style={{ background: "#141414"}}>
+    <div style={{ background: '#141414' }}>
       <Menu />
 
       <BannerMain
         videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
         url={dadosIniciais.categorias[0].videos[0].url}
-        videoDescription={"Contra Baixo é facil e chato? Guitarras são mais dificeis e mais divertidas? Descubra agora."}
+        // eslint-disable-next-line react/jsx-curly-brace-presence
+        videoDescription={'Contra Baixo é facil e chato? Guitarras são mais dificeis e mais divertidas? Descubra agora.'}
       />
 
-      <Carousel 
+      <Carousel
         ignoreFirstVideo
         category={dadosIniciais.categorias[0]}
       />
 
-      <Carousel 
+      <Carousel
         category={dadosIniciais.categorias[1]}
       />
 
-      <Carousel 
+      <Carousel
         category={dadosIniciais.categorias[2]}
       />
 
-      <Carousel 
+      <Carousel
         category={dadosIniciais.categorias[3]}
       />
 
-      <Carousel 
+      <Carousel
         category={dadosIniciais.categorias[4]}
       />
 
-      <Carousel 
+      <Carousel
         category={dadosIniciais.categorias[5]}
       />
 
       <Footer />
-      
     </div>
   );
 }
