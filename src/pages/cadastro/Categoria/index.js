@@ -31,7 +31,7 @@ function CadastroCategoria() {
 
   useEffect(() => {
     const URL_API = window.location.hostname.includes('localhost')
-      ? 'http://localhost:4000/categoria'
+      ? 'http://localhost:4000/categorias'
       : 'https://finoflix.herokuapp.com/categorias';
 
     fetch(URL_API)
@@ -98,8 +98,8 @@ function CadastroCategoria() {
 
       <ul>
         {categorias.map((categoria) => (
-          <li key={`${categoria.nome}`}>
-            {categoria.nome}
+          <li key={`${categoria.titulo}`}>
+            {categoria.titulo}
           </li>
         ))}
       </ul>
