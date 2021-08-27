@@ -1,29 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import useForm from '../../../hooks/useForm';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 import videosRepository from '../../../repositories/videos';
+import categoriasRepository from '../../../repositories/categorias';
 
 function CadastroVideo() {
   const history = useHistory();
+  const [categorias, setCategorias] = useState([]);
+  const categoryTitles = categorias.map(({ titulo }) => titulo);
   const { handleChange, values } = useForm({
-    titulo: 'Video base',
-    url: 'https://www.youtube.com/watch?v=TPh8fLeahqM',
-    categoria: 'Front End',
+    titulo: '',
+    url: '',
+    categoria: '',
   });
+
+  useEffect(() => {
+    categoriasRepository
+      .getAll()
+      .then((categoriasFromServer) => {
+        setCategorias(categoriasFromServer);
+      });
+  }, []);
+
   return (
     <PageDefault>
       <h1>Cadastro de Vídeo</h1>
 
       <form onSubmit={(event) => {
         event.preventDefault();
-        // alert('Video cadastrado com sucesso!!!');
+        // eslint-disable-next-line max-len
+        const categoriasEscolhida = categorias.find((categoria) => categoria.titulo === values.categoria);
+
         videosRepository.create({
           titulo: values.titulo,
           url: values.url,
-          categoriaId: 1,
+          categoriaId: categoriasEscolhida.id,
         })
           .then(() => {
             history.push('/');
@@ -39,16 +53,17 @@ function CadastroVideo() {
 
         <FormField
           label="URL"
-          name="titulo"
+          name="url"
           value={values.url}
           onChange={handleChange}
         />
 
         <FormField
           label="Categoria"
-          name="url"
+          name="categoria"
           value={values.categoria}
           onChange={handleChange}
+          suggestions={categoryTitles}
         />
 
         <Button type="submit">
