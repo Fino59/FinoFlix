@@ -6,6 +6,7 @@ import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 import videosRepository from '../../../repositories/videos';
 import categoriasRepository from '../../../repositories/categorias';
+import './style.css';
 
 function CadastroVideo() {
   const history = useHistory();
@@ -29,20 +30,22 @@ function CadastroVideo() {
     <PageDefault>
       <h1>Cadastro de Vídeo</h1>
 
-      <form onSubmit={(event) => {
-        event.preventDefault();
-        // eslint-disable-next-line max-len
-        const categoriasEscolhida = categorias.find((categoria) => categoria.titulo === values.categoria);
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          // eslint-disable-next-line max-len
+          const categoriasEscolhida = categorias.find((categoria) => categoria.titulo === values.categoria);
 
-        videosRepository.create({
-          titulo: values.titulo,
-          url: values.url,
-          categoriaId: categoriasEscolhida.id,
-        })
-          .then(() => {
-            history.push('/');
-          });
-      }}
+          videosRepository.create({
+            titulo: values.titulo,
+            url: values.url,
+            categoriaId: categoriasEscolhida.id,
+          })
+            .then(() => {
+              history.push('/');
+            });
+        }}
+        className="form"
       >
         <FormField
           label="Título do Vídeo"
